@@ -14,7 +14,7 @@ public class Ragdoll : CharacterBase
     private void DetachHead()
     {
         animator.SetBool("hasHead", false);
-        ragdollHead.transform.localPosition = Vector2.zero + headOffset;
+        ragdollHead.transform.position = (Vector2)(transform.position) + headOffset;
         ragdollHead.SetActive(true);
         hasHead = false;
     }

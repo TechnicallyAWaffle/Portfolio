@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,11 +7,9 @@ using UnityEngine.InputSystem;
 public class CharacterClickHandler : MonoBehaviour
 {
 
-    private static bool IsLeftClick() => Input.GetMouseButtonDown(0);
-    private static bool IsRightClick() => Input.GetMouseButtonDown(1);
-
     // ── Drag state ────────────────────────────────────────────────────────────
-    private bool isDragging = false;
+    [SerializeField] private float leftClickHoldTime;
+    [SerializeField] private bool isDragging = false;
     private Vector2 dragOffset;   // Offset from character pivot to click point
 
     private CharacterBase selectedCharacter;
@@ -19,56 +18,7 @@ public class CharacterClickHandler : MonoBehaviour
     // ── Lifecycle ─────────────────────────────────────────────────────────────
     private void Awake()
     {
-        selectedCharacter = GetComponent<CharacterBase>();
         mainCam = Camera.main;
-    }
-
-    // ── Mouse events ──────────────────────────────────────────────────────────
-
-    private void OnMouseDown()
-    {
-        Debug.Log("meow");
-        Vector2 mouseWorldPoint = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPoint, Vector2.zero);
-        // Left click — inspect
-        Debug.Log("Raycast Hit: " + hit);
-        if (hit.collider != null && hit.collider.CompareTag("Character"))
-        {
-            selectedCharacter = hit.collider.GetComponent<CharacterBase>();
-            HandleLeftClick();
-            HandleRightClick();
-        }
-    }
-
-    private void HandleRightClick()
-    {
-        if (IsRightClick())
-        {
-            // If the info panel is open, close it before dragging
-            if (selectedCharacter.CurrentState == CharacterBase.CharacterState.Frozen)
-                //CharacterInfoUI.Instance?.Hide();
-
-            isDragging = true;
-            dragOffset = (Vector2)transform.position - MouseWorldPos();
-        }
-    }
-
-    private void HandleLeftClick()
-    {
-        if (IsLeftClick())
-        {
-            bool isAlreadyFrozen = selectedCharacter.CurrentState == CharacterBase.CharacterState.Frozen;
-            if (isAlreadyFrozen)
-            {
-                // Second left click = dismiss
-                selectedCharacter.Unfreeze();
-            }
-            else
-            {
-                selectedCharacter.Freeze();
-            }
-            return;
-        }
     }
 
     private void OnMouseUp()
@@ -81,23 +31,76 @@ public class CharacterClickHandler : MonoBehaviour
         }
     }
 
+    private IEnumerator MouseHoldTimer()
+    {
+        yield return new WaitForSeconds(leftClickHoldTime);
+        isDragging = true;
+    }
+
+
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            CheckInitialClick();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (isDragging)
+            {
+                ReleaseCharacter();
+            }
+            else
+            {
+                SelectCharacter();
+            }
+        }   
 
         if (isDragging)
         {
             selectedCharacter.transform.position = MouseWorldPos() + dragOffset;
-
-            // Safety: release if the right mouse button comes up between frames
-            if (!Input.GetMouseButton(1))
-            {
-                isDragging = false;
-                selectedCharacter.Unfreeze();
-            }
+   
         }
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private void ReleaseCharacter()
+    {
+        isDragging = false;
+        selectedCharacter.Unfreeze();
+    }
+
+    private void SelectCharacter()
+    {
+        StopAllCoroutines();
+        bool isAlreadyFrozen = selectedCharacter.CurrentState == CharacterBase.CharacterState.Frozen;
+        if (isAlreadyFrozen)
+        {
+            // Second left click = dismiss
+            selectedCharacter.Unfreeze();
+        }
+        else
+        {
+            Debug.Log("Selected " + selectedCharacter.gameObject.name);
+            selectedCharacter.Freeze();
+        }
+        return;
+    }
+
+    private void CheckInitialClick()
+    {
+        Vector2 mouseWorldPoint = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPoint, Vector2.zero);
+        if (hit.collider != null && hit.collider.CompareTag("Character"))
+        {
+            StartCoroutine(MouseHoldTimer());
+            selectedCharacter = hit.collider.GetComponent<CharacterBase>();
+        }
+    }
+
+
 
     private Vector2 MouseWorldPos()
     {
