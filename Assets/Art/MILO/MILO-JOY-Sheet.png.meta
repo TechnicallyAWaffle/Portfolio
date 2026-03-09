@@ -1,0 +1,348 @@
+fileFormatVersion: 2
+guid: 074c713cb564693468ad0b9bd4a19e61
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6695589701115365405
+    second: MILO-JOY-Sheet_0
+  - first:
+      213: 8747615453557622130
+    second: MILO-JOY-Sheet_1
+  - first:
+      213: -978672356881191036
+    second: MILO-JOY-Sheet_2
+  - first:
+      213: 129569473214452382
+    second: MILO-JOY-Sheet_3
+  - first:
+      213: -3851975129339513186
+    second: MILO-JOY-Sheet_4
+  - first:
+      213: -2244179817531667220
+    second: MILO-JOY-Sheet_5
+  - first:
+      213: -2280038605357367238
+    second: MILO-JOY-Sheet_6
+  - first:
+      213: -7229091417143177725
+    second: MILO-JOY-Sheet_7
+  - first:
+      213: -5167047692959838229
+    second: MILO-JOY-Sheet_8
+  - first:
+      213: 1554575452714945447
+    second: MILO-JOY-Sheet_9
+  - first:
+      213: 3697977589610538618
+    second: MILO-JOY-Sheet_10
+  - first:
+      213: 294766430164260901
+    second: MILO-JOY-Sheet_11
+  - first:
+      213: 6131906949914594074
+    second: MILO-JOY-Sheet_12
+  - first:
+      213: -6008278227248110590
+    second: MILO-JOY-Sheet_13
+  - first:
+      213: -7192286998857785566
+    second: MILO-JOY-Sheet_14
+  - first:
+      213: 8540727992990222155
+    second: MILO-JOY-Sheet_15
+  - first:
+      213: 1934710115981130674
+    second: MILO-JOY-Sheet_16
+  - first:
+      213: -4068612933196377640
+    second: MILO-JOY-Sheet_17
+  - first:
+      213: -5497674052320482419
+    second: MILO-JOY-Sheet_18
+  - first:
+      213: -5103140309986923488
+    second: MILO-JOY-Sheet_19
+  - first:
+      213: -7844873832303260790
+    second: MILO-JOY-Sheet_20
+  - first:
+      213: -748657053036421190
+    second: MILO-JOY-Sheet_21
+  - first:
+      213: 7557338929400312066
+    second: MILO-JOY-Sheet_22
+  - first:
+      213: 7478409535209609431
+    second: MILO-JOY-Sheet_23
+  - first:
+      213: -3861159762681513714
+    second: MILO-JOY-Sheet_24
+  - first:
+      213: -897523364695376455
+    second: MILO-JOY-Sheet_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MILO-JOY-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e7314f34ac7413a0800000000000000
+      internalID: -6695589701115365405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILO-JOY-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 275050d78e5c56970800000000000000
+      internalID: 8747615453557622130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILO-JOY-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f2a983dae0b62f0800000000000000
+      internalID: -978672356881191036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILO-JOY-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e929ea8dfb25cc100800000000000000
+      internalID: 129569473214452382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILO-JOY-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e96341c47090b8ac0800000000000000
+      internalID: -3851975129339513186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILO-JOY-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec8ceb98521bd0e0800000000000000
+      internalID: -2244179817531667220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b58ebddd00f709649859a72d223d10c9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MILO-JOY-Sheet_0: -6695589701115365405
+      MILO-JOY-Sheet_1: 8747615453557622130
+      MILO-JOY-Sheet_2: -978672356881191036
+      MILO-JOY-Sheet_3: 129569473214452382
+      MILO-JOY-Sheet_4: -3851975129339513186
+      MILO-JOY-Sheet_5: -2244179817531667220
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
