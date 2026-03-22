@@ -9,11 +9,12 @@ public class CharacterClickHandler : MonoBehaviour
 
     // ── Drag state ────────────────────────────────────────────────────────────
     [SerializeField] private float leftClickHoldTime;
-    [SerializeField] private bool isDragging = false;
+    public bool isDragging = false;
     private Vector2 dragOffset;   // Offset from character pivot to click point
 
     private CharacterBase selectedCharacter;
     private Camera mainCam;
+    [SerializeField] CameraManager cameraManager; 
 
     // ── Lifecycle ─────────────────────────────────────────────────────────────
     private void Awake()
@@ -53,7 +54,8 @@ public class CharacterClickHandler : MonoBehaviour
             }
             else
             {
-                SelectCharacter();
+                if(selectedCharacter != null)
+                    SelectCharacter();
             }
         }   
 
@@ -65,7 +67,6 @@ public class CharacterClickHandler : MonoBehaviour
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
-
     private void ReleaseCharacter()
     {
         isDragging = false;
@@ -80,27 +81,37 @@ public class CharacterClickHandler : MonoBehaviour
         {
             // Second left click = dismiss
             selectedCharacter.Unfreeze();
+            selectedCharacter.characterInfoUI.SetActive(false);
         }
         else
         {
             Debug.Log("Selected " + selectedCharacter.gameObject.name);
             selectedCharacter.Freeze();
+            selectedCharacter.characterInfoUI.SetActive(true);
         }
         return;
     }
 
     private void CheckInitialClick()
     {
+        cameraManager.isPanning = true;
         Vector2 mouseWorldPoint = mainCam.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPoint, Vector2.zero);
         if (hit.collider != null && hit.collider.CompareTag("Character"))
         {
+            cameraManager.isPanning = false;
             StartCoroutine(MouseHoldTimer());
             selectedCharacter = hit.collider.GetComponent<CharacterBase>();
         }
+        else
+        {
+            if (selectedCharacter)
+            {
+                selectedCharacter.characterInfoUI.SetActive(false);
+                selectedCharacter = null;
+            }
+        }
     }
-
-
 
     private Vector2 MouseWorldPos()
     {

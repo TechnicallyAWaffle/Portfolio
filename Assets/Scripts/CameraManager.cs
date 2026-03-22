@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraManager : MonoBehaviour
 {
@@ -10,26 +11,41 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float minZoom = 2f;
     [SerializeField] private float maxZoom = 12f;
 
+    [SerializeField] private CharacterClickHandler clickHandler;
+
     private Camera cam;
     private Vector3 dragOrigin;
+    public bool isPanning;
+
 
     private void Awake() => cam = GetComponent<Camera>();
 
-    private void Update()
+    private void LateUpdate()
     {
-        HandlePan();
         HandleZoom();
+        HandlePan();
     }
 
-    private void HandlePan()
+    public void HandlePan()
     {
-        if (Input.GetMouseButtonDown(1))
-            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButton(1))
+        if (isPanning)
         {
-            Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
-            transform.position += difference * panSpeed;
+            if (Input.GetMouseButtonDown(0))
+            {
+                dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
+                transform.position += difference * panSpeed;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                isPanning = false;
+            }
+
         }
     }
 

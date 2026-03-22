@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 public class CharacterBase : MonoBehaviour
 {
@@ -18,8 +17,9 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] protected float minUniqueActionInterval = 5f;
     [SerializeField] protected float maxUniqueActionInterval = 12f;
 
-    [Header("Sprite")]
+    [Header("Sprite and UI")]
     [SerializeField] protected bool flipSpriteOnMove = true;
+    public GameObject characterInfoUI;
 
 
     public enum CharacterState { Idle, Moving, Frozen, UniqueAction }
@@ -73,7 +73,7 @@ public class CharacterBase : MonoBehaviour
     }
 
     /// <summary>Main loop: idle → pick target → walk → repeat.</summary>
-    private IEnumerator BehaviorLoop()
+    protected virtual IEnumerator BehaviorLoop()
     {
         while (true)
         {
