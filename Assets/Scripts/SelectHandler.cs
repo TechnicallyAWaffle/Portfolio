@@ -94,22 +94,11 @@ public class CharacterClickHandler : MonoBehaviour
 
     private void CheckInitialClick()
     {
-        cameraManager.isPanning = true;
         Vector2 mouseWorldPoint = mainCam.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPoint, Vector2.zero);
-        if (hit.collider != null && hit.collider.CompareTag("Character"))
+        if (hit.collider != null && hit.collider.CompareTag("Jar"))
         {
-            cameraManager.isPanning = false;
-            StartCoroutine(MouseHoldTimer());
-            selectedCharacter = hit.collider.GetComponent<CharacterBase>();
-        }
-        else
-        {
-            if (selectedCharacter)
-            {
-                selectedCharacter.characterInfoUI.SetActive(false);
-                selectedCharacter = null;
-            }
+            hit.transform.GetComponent<JarBase>().SelectJar();
         }
     }
 
