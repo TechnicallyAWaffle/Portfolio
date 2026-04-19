@@ -23,7 +23,7 @@ public class CharacterBase : MonoBehaviour
 
 
     public enum CharacterState { Idle, Moving, Frozen, UniqueAction }
-    protected CharacterState currentState = CharacterState.Idle;
+    [SerializeField] protected CharacterState currentState;
 
     protected Rigidbody2D rb;
     protected Animator animator;
@@ -49,6 +49,7 @@ public class CharacterBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        currentState = CharacterState.Frozen;
         behaviorCoroutine = StartCoroutine(BehaviorLoop());
         uniqueActionTimerCoroutine = StartCoroutine(UniqueActionTimer());
     }
@@ -63,12 +64,14 @@ public class CharacterBase : MonoBehaviour
 
     public void Freeze()
     {
+        rb.bodyType = RigidbodyType2D.Kinematic;
         SetState(CharacterState.Frozen);
         animator.SetBool(AnimIsMoving, false);
     }
 
     public void Unfreeze()
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         SetState(CharacterState.Idle);
     }
 
@@ -178,7 +181,7 @@ public class CharacterBase : MonoBehaviour
         currentState = newState;
         UpdateAnimator();
         OnStateChanged(newState);
-        Debug.Log(gameObject.name + "state changed to " + newState);
+        //Debug.Log(gameObject.name + "state changed to " + newState);
     }
 
     /// <summary>Called whenever the state changes. Override for extra logic.</summary>

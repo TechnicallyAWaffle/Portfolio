@@ -46,5 +46,8 @@ TagManager:
   - name: Myui Clothing
     uniqueID: 367808897
     locked: 0
+  - name: Jars
+    uniqueID: 575320711
+    locked: 0
   m_RenderingLayers:
   - Default

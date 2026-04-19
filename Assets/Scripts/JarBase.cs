@@ -10,16 +10,26 @@ public class JarBase : MonoBehaviour
     //Refs
     private Animator animator;
     [SerializeField] private List<JarElement> JarElements = new();
+    private Vector3 initialSize;
 
     //Tuning Vars
     private Vector2 initialPosition;
-    [SerializeField] private float lerpDuration;
-    [SerializeField] private Vector3 openJarPosition;
-    [SerializeField] private Vector2 jarHoverScaleChange;
+    [SerializeField] protected float sizeChangeOnHover;
+    [SerializeField] protected float lerpDuration;
+    [SerializeField] protected Vector3 openJarPosition;
+    [SerializeField] protected Vector2 jarHoverScaleChange;
+    [SerializeField] protected CharacterBase[] characters;
+    [SerializeField] protected float jarSelectLockoutTimer;
+
+    //Runtime Vars
+    [Header("Runtime, do not edit")]
+    [SerializeField] protected bool isOpen = false;
+    [SerializeField] protected bool canSelect = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        initialSize = transform.localScale;
         initialPosition = transform.position;
         animator = GetComponent<Animator>();
     }
@@ -33,8 +43,21 @@ public class JarBase : MonoBehaviour
 
     public void SelectJar()
     {
+        if (!canSelect)
+            return;
+
+        StartCoroutine(JarSelectLockoutTimer());
+
         animator.SetBool("isHovering", false);
-        animator.SetTrigger("OpenJar");
+        if (isOpen)
+        {
+            ReturnJarElements();
+        }
+        else
+        {
+            animator.SetTrigger("OpenJar");
+        }
+        isOpen = !isOpen;
     }
 
     public void ReturnToShelf()
@@ -64,6 +87,14 @@ public class JarBase : MonoBehaviour
     }
     */
 
+    private IEnumerator JarSelectLockoutTimer()
+    {
+        canSelect = false;
+        yield return new WaitForSeconds(jarSelectLockoutTimer);
+        canSelect = true;
+    }
+
+
     public void EmptyJarElements()
     {
         foreach (JarElement element in JarElements)
@@ -73,13 +104,25 @@ public class JarBase : MonoBehaviour
         }
     }
 
+    public void ReturnJarElements()
+    {
+        foreach (JarElement element in JarElements)
+        {
+            if (element)
+                element.Return();
+        }
+    }
+
+
     public void OnMouseEnter()
     {
+        transform.localScale = initialSize += new Vector3(sizeChangeOnHover, sizeChangeOnHover, 0);
         animator.SetBool("isHovering", true);
     }
 
     public void OnMouseExit()
     {
+        transform.localScale = initialSize;
         animator.SetBool("isHovering", false);
     }
 
