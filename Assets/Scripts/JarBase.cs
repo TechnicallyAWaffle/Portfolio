@@ -11,6 +11,9 @@ public class JarBase : MonoBehaviour
     private Animator animator;
     [SerializeField] private List<JarElement> JarElements = new();
     private Vector3 initialSize;
+    private JarManager jarManager;
+    [SerializeField] protected GameObject characterCanvas;
+    protected Animator characterCanvasAnimator;
 
     //Tuning Vars
     private Vector2 initialPosition;
@@ -19,12 +22,14 @@ public class JarBase : MonoBehaviour
     [SerializeField] protected Vector3 openJarPosition;
     [SerializeField] protected Vector2 jarHoverScaleChange;
     [SerializeField] protected CharacterBase[] characters;
-    [SerializeField] protected float jarSelectLockoutTimer;
+    [SerializeField] protected float jarSelectLockoutTimer = 1.5f;
 
     //Runtime Vars
     [Header("Runtime, do not edit")]
     [SerializeField] protected bool isOpen = false;
     [SerializeField] protected bool canSelect = true;
+
+    public void Lockout() => StartCoroutine(JarSelectLockoutTimer());
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +37,8 @@ public class JarBase : MonoBehaviour
         initialSize = transform.localScale;
         initialPosition = transform.position;
         animator = GetComponent<Animator>();
+        jarManager = JarManager.Instance;
+        characterCanvasAnimator = characterCanvas.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,16 +53,18 @@ public class JarBase : MonoBehaviour
         if (!canSelect)
             return;
 
-        StartCoroutine(JarSelectLockoutTimer());
+        jarManager.SwitchOpenJar(this);
 
         animator.SetBool("isHovering", false);
         if (isOpen)
         {
+            characterCanvasAnimator.SetTrigger("PopDown");
             ReturnJarElements();
         }
         else
         {
             animator.SetTrigger("OpenJar");
+            characterCanvasAnimator.SetTrigger("PopUp");
         }
         isOpen = !isOpen;
     }
