@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.Video;
 
 public class JarBase : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class JarBase : MonoBehaviour
     private JarManager jarManager;
     [SerializeField] protected GameObject characterCanvas;
     protected Animator characterCanvasAnimator;
+    private VideoManager videoManager;
+    public VideoClip gameClip;
 
     //Tuning Vars
     private Vector2 initialPosition;
@@ -39,6 +42,7 @@ public class JarBase : MonoBehaviour
         animator = GetComponent<Animator>();
         jarManager = JarManager.Instance;
         characterCanvasAnimator = characterCanvas.GetComponent<Animator>();
+        videoManager = VideoManager.Instance;
     }
 
     // Update is called once per frame
@@ -63,6 +67,7 @@ public class JarBase : MonoBehaviour
         }
         else
         {
+            videoManager.SetVideo(gameClip);
             animator.SetTrigger("OpenJar");
             characterCanvasAnimator.SetTrigger("PopUp");
         }

@@ -11,6 +11,9 @@ public class JarManager : MonoBehaviour
     [SerializeField] private JarBase currentOpenJar;
     [SerializeField] private JarBase[] jars;
 
+    //Refs
+    [SerializeField] private VideoManager videoManager;
+
     private void Awake()
     {
         Instance = this;
